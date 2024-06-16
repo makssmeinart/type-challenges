@@ -34,7 +34,11 @@
 
 /* _____________ Your Code Here _____________ */
 
-type MyReadonly2<T, K> = any
+type MyReadonly2<T, K extends keyof T = keyof T> = {
+  [key in keyof T as key extends K ? never : key]: T[key] 
+} & {
+  readonly [key in K]: T[key]
+}
 
 /* _____________ Test Cases _____________ */
 import type { Alike, Expect } from '@type-challenges/utils'
