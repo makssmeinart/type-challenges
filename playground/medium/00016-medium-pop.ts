@@ -26,7 +26,11 @@
 
 /* _____________ Your Code Here _____________ */
 
-type Pop<T extends any[]> = any
+type Reverse<T extends unknown[]> = T extends [infer F, ...infer Rest] ? [...Reverse<Rest>, F] : []
+
+type Pop<T extends unknown[]> = Reverse<T> extends [infer F, ...infer Rest]
+  ? Reverse<Rest>
+  : []
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
