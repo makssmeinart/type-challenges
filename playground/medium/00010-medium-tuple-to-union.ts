@@ -20,10 +20,11 @@
 
 /* _____________ Your Code Here _____________ */
 
-type TupleToUnion<T> = any
+type TupleToUnion<T extends readonly unknown[]> = T[number]
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
+import { UnionOrIntersectionType } from 'typescript'
 
 type cases = [
   Expect<Equal<TupleToUnion<[123, '456', true]>, 123 | '456' | true>>,
