@@ -17,8 +17,10 @@
 */
 
 /* _____________ Your Code Here _____________ */
+// Loop through the
 
-type TrimLeft<S extends string> = any
+type Whitespace = '\n' | ' ' | '\t'
+type TrimLeft<S> = S extends `${Whitespace}${infer U}` ? TrimLeft<U> : S
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
