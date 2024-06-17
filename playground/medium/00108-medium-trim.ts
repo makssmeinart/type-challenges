@@ -17,8 +17,10 @@
 */
 
 /* _____________ Your Code Here _____________ */
-
-type Trim<S extends string> = any
+type Whitespace = '\n' | ' ' | '\t'
+type Trim<S extends string> = S extends
+`${Whitespace}${infer Rest}` | `${infer Rest}${Whitespace}`
+  ? Trim<Rest> : S
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
